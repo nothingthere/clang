@@ -1,0 +1,26 @@
+# README.org
+# Author: Claudio <3261958605@qq.com>
+# Created: 2017-07-21 18:32:37
+# Commentary:
+#+TITLE: 动态字符串数组
+
+API可参考 [[file:Strings.h][Strings.h]] 头文件。
+
+*注意：*
+
+由于没使用“链表”，而是采用动态内存分配。使用向数组中添加元素的函数时，
+需利用其返回值重新赋值原来指针，如：
+
+#+BEGIN_SRC c :session
+  Strings s = stingInit();
+  stringAppend(s, "hello");
+  stringAppend(s, "world");
+#+END_SRC
+
+应改为：
+
+#+BEGIN_SRC c :session
+  Strings = stringInit();
+  s = stringAppend(s, "hello");
+  s = stringAppend(s, "world");
+#+END_SRC
