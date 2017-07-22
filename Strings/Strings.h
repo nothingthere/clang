@@ -4,6 +4,9 @@
  * Created: 2017-07-21 13:41:43
  * Commentary: Strings.c头文件
  ***************************************************************/
+#ifndef STRINGS_H
+#define STRINGS_H
+
 typedef char *String;
 typedef char **Strings;
 
@@ -27,6 +30,7 @@ Strings stringsCopy(Strings strings);
 int stringsFind(Strings strings, String str);
 String stringsGet(Strings Strings, int i);
 
-String stringsJoin(Strings Strings, String str);
-
+void stringsMap(Strings strings, void (*fn)(String));
 void stringsPrint(Strings strings);
+
+#endif

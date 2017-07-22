@@ -34,9 +34,8 @@ size_t stringsLen(Strings strings) {
 
 void stringsClear(Strings strings) {
   int n = stringsLen(strings);
-  while (--n >= 0) {
+  while (--n >= 0)
     free(strings[n]);
-  }
 
   free(strings);
 }
@@ -130,6 +129,13 @@ String stringsGet(Strings strings, int i) {
     return NULL;
   return strings[i];
 };
+
+void stringsMap(Strings strings, void (*fn)(String)) {
+  int len = stringsLen(strings);
+  int n = 0;
+  while (n < len)
+    (*fn)(strings[n++]);
+}
 
 void stringsPrint(Strings strings) {
   size_t len = stringsLen(strings);

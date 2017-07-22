@@ -7,6 +7,8 @@
 #include "Strings.h"
 #include <stdio.h>
 
+void print(String str) { printf("%s\n", str); }
+
 int main(void) {
   Strings strings = stringsInit();
 
@@ -53,7 +55,9 @@ int main(void) {
   printf("s2中第-1个元素为：%s\n", stringsGet(s2, -1));
   printf("s2中第100个元素为：%s\n", stringsGet(s2, 100));
 
-  printf("strings:\n");
+  printf("stringsMap(strings, print)结果:\n");
+  stringsMap(strings, print);
+
   stringsClear(strings);
   stringsClear(s2);
   stringsClear(s3);
