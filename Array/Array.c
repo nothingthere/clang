@@ -4,7 +4,9 @@
  * Created: 2017-07-21 22:12:47
  * Commentary:
  ***************************************************************/
+
 #include "Array.h"
+#include "Constants.h"
 #include "Generic.h"
 #include <stddef.h>
 #include <stdio.h>
@@ -40,12 +42,6 @@ void arrayClear(ArrayPtr aptr) {
   }
   free(aptr->elems);
   free(aptr);
-}
-
-void arrayClearItem(Elem *elem, char type) {
-  if (STRING == type)
-    free(elem->sval);
-  free(elem);
 }
 
 ArrayPtr arrayInsert(ArrayPtr aptr, int i, Elem elem) {
@@ -195,33 +191,16 @@ int arrayFind(ArrayPtr aptr, Elem elem) {
       break;
     }
   }
-  return -1;
+  return NOT_FOUND;
 }
 
-int arrayGet(ArrayPtr aptr, int i, Elem *elem) {
+Elem *arrayGet(ArrayPtr aptr, int i) {
   int n = arrayLen(aptr);
-  char type = aptr->type;
-  Elem *tmp;
+
   if (i < 0 || i >= n)
-    return 0;
+    return NULL;
 
-  tmp = aptr->elems[i];
-
-  switch (type) {
-  case INT:
-    elem->ival = tmp->ival;
-    break;
-  case FLOAT:
-    elem->fval = tmp->fval;
-    break;
-  case DOUBLE:
-    elem->dval = tmp->dval;
-    break;
-  case STRING:
-    elem->sval = strdup(tmp->sval);
-    break;
-  }
-  return 1;
+  return (aptr->elems)[i];
 }
 
 /* FIXME:  */

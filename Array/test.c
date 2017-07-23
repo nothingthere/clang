@@ -4,26 +4,28 @@
  * Created: 2017-07-22 18:32:01
  * Commentary:
  ***************************************************************/
+
 #include "Array.h"
+#include "Constants.h"
 #include "Generic.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main(void) {
   ArrayPtr aptr = arrayInit(STRING);
+  assert(is_zero(arrayLen(aptr)));
 
-  printf("初始化后数组长度为：%lu\n", arrayLen(aptr));
   Elem hello;
   hello.sval = "hello";
-  /* hello.dval = 1.1; */
   Elem world;
   world.sval = "world";
-  /* world.dval = 2.2; */
 
   printf("insert添加2个元素后：\n");
   arrayInsert(aptr, 0, hello);
   arrayInsert(aptr, 1000, world);
+
   arrayPrint(aptr);
 
   printf("remove删除第2个元素后，数组为：\n");
@@ -99,18 +101,17 @@ int main(void) {
   printf("=======================\n");
   printf("获取第一个数组中第1个元素为：\n");
 
-  Elem *item = (Elem *)malloc(sizeof(Elem));
+  /* Elem *item = (Elem *)malloc(sizeof(Elem)); */
+  Elem *item = arrayGet(aptr, 0);
 
-  if (arrayGet(aptr, 0, item))
-    println(item->sval);
+  assert(is_string_equal(item->sval, hello.sval)));
 
-  arrayClearItem(item, STRING);
+  assert(is_null(arrayGet(aptr, 1000)));
+
   arrayClear(aptr);
   arrayClear(aptr2);
   arrayClear(aptr3);
-  /* arrayShallowClear(aptr4); */
 
-  /* println(ep->sval); */
-
+  printf("！！！测试通过！！！\n");
   return 0;
 }

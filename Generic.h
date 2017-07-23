@@ -9,6 +9,7 @@
 #define GENERIC_H
 
 enum _typename { INT, FLOAT, DOUBLE, STRING };
+
 #define typeof(x) _Generic((x), int : INT, float : FLOAT, double : DOUBLE,     \
                             char * : STRING)
 

@@ -43,7 +43,7 @@ ArrayPtr arrayCopy(ArrayPtr aptr, char type);
 
 int arrayFind(ArrayPtr aptr, Elem elem);
 
-int arrayGet(ArrayPtr aptr, int i, Elem *elem);
+Elem *arrayGet(ArrayPtr aptr, int i);
 
 /* FIXME:  */
 void arrayMap(ArrayPtr aptr, void (*fn)(Elem));
