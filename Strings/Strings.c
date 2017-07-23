@@ -20,7 +20,7 @@ void *_safe_malloc(size_t size) {
 
 Strings stringsInit(void) {
   Strings strings;
-  strings = (char **)_safe_malloc(sizeof(String));
+  strings = (Strings)_safe_malloc(sizeof(String));
   strings[0] = NULL;
   return strings;
 }
@@ -93,11 +93,11 @@ Strings stringsPopLeft(Strings strings) { return stringsRemove(strings, 0); }
 
 Strings stringsExtend(Strings dest, Strings src) {
   int len = stringsLen(src);
-  int n = 0;
   Strings tmp = dest;
+  int i = 0;
 
-  while (n < len)
-    tmp = stringsAppend(tmp, src[n++]);
+  while (i < len)
+    tmp = stringsAppend(tmp, src[i++]);
 
   return tmp;
 }

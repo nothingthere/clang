@@ -55,8 +55,8 @@ int main(void) {
   printf("s2中第-1个元素为：%s\n", stringsGet(s2, -1));
   printf("s2中第100个元素为：%s\n", stringsGet(s2, 100));
 
-  printf("stringsMap(strings, print)结果:\n");
-  stringsMap(strings, print);
+  printf("stringsMap(s3, print)结果:\n");
+  stringsMap(s3, print);
 
   stringsClear(strings);
   stringsClear(s2);
